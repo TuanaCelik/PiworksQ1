@@ -67,8 +67,8 @@ public class PiworksQ1{
 				if(clientOut.get(i).size()>0)distincts.add(clientOut.get(i).size());
 			}
 
-			pi.result(distincts);
 			//System.out.println(distincts);
+			pi.result(distincts);
 		}
 		catch(IOException e){
 			System.out.println("Problem with file input.");
@@ -76,30 +76,28 @@ public class PiworksQ1{
 	}
 
 	public void result(ArrayList<Integer> distinct){
-		//Arrays.sort(distinct);
-		//System.out.println(distinct);
 		try{
 			
 			FileWriter writer1 = new FileWriter("test.csv");
 			writer1.write("DISTINCT_PLAY_COUNT,CLIENT_COUNT\n");
-			System.out.println("done");
-
+			//System.out.println("done");
+			//System.out.println(distinct.size());
 			while(distinct.size()>0){
 				int result = 1;
 				for(int i = 1; i<distinct.size(); i++){
 					if(distinct.get(i).equals(distinct.get(0))){
 						result++;
 						distinct.remove(i);
+						i--;
 					}
 				}
-				System.out.println("hello");
-				//for(int i = 0; i < song.size(); i++){
+
 				writer1.write(distinct.get(0) + "," + result + "\n");
-				//}
 				distinct.remove(0);
-				
 			}
+
 				writer1.close();
+				System.out.println("DONE");
 		}
 		catch(IOException e){
 			System.out.println("Problem with file inputssss.");
